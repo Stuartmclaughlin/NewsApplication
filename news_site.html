@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+    <meta name="description" 
+content="This is a web app used to explore guardian api">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UUJ News</title>
+    <link rel="stylesheet" href="styles/css.min/main.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	 crossorigin="anonymous">
+
+</head>
+
+<body>
+	
+
+      <nav class="navbar navbar-light bg-dark navbar-expand-lg">
+          <div class="container">
+            <a class="navbar-brand text-light">UUJ-NEWS</a>
+              <ul class="nav nav-justified mr-auto text-light">
+              <li class="nav-item">
+        <a class="nav-link a_top" href="#home" data-toggle="tab">Home</a>
+      </li>
+            <li class="nav-item">
+				<a href="#favs" class="nav-link a_top" data-toggle="tab">Favourites</a>
+			</li>
+            <li class="nav-item">
+				<a href="#sections" class="nav-link a_top" id="section_nav">Sections</a>
+			</li>
+                  
+              </ul>
+            <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" data-toggle="tooltip" title="Please enter a value that you would like to search for. The search will include local results from the page and external results from the guardian API" aria-label="Search" id="searchquery" name="search">
+      <input type="button" id="searchbtn" data-toggle="tooltip" title="Click here to search for the value within the search box." class="btn btn-sm btn-outline-info mr-2" value="Search"/>
+            <input type="button" id="clearbtn" data-toggle="tooltip" class="btn btn-sm btn-outline-info mr-2" title="Click here to clear the search results and continue using the webpage."  value="Clear"/>
+    </form>
+              </div>
+        </nav>
+        
+            <div id="searchResult_div">
+        <div class="jumbotron-fluid bg-primary pb-3 pt-3 mb-5">
+             <div class="container">
+                 <h3 class="text-light display-4">Search Results</h3>
+                 <p class="lead text-light">Please clear search to continue using site.</p>
+                </div>
+                </div>
+            
+        <div class="container">
+        <div class="row">
+        <div class="col-lg-6">
+        <h3 class="mt-3 mb-3">External Results</h3>
+        <ul class="list-group Results mb-5" id="newsResults"></ul>
+        </div>
+        <div class="col-lg-6">
+        <h3 class="mt-3 mb-3">Local Results</h3>
+        <ul class="list-group Results mb-5" id="offlineResults"></ul>
+            </div>
+        </div>
+        </div>
+        </div>
+    
+    <div class="tab-content" id="nav_tabs">
+    
+			<div id="home" class="tab-pane fade show active">
+                
+                <div class="jumbotron-fluid bg-primary pb-3 pt-3 mb-5">
+             <div class="container">
+                 <h3 class="text-light display-3">Top Stories!</h3>
+                 <p class="lead text-light" id="date"></p>
+                </div>
+                </div>
+                <div class="container">
+                <div class="row" id="popular">
+                </div>
+                    </div>
+                </div>
+                
+                <div id="favs" class="tab-pane fade">
+                <div class="jumbotron-fluid bg-primary pb-3 pt-3 mb-5">
+                 <div class="container">
+                 <h1 class="text-light display-4">Favourites</h1>
+                 <p class="lead text-light" id="date"></p>
+                    </div>
+                    </div>
+                    <div class="container">
+                     <div class="row" id="fav_posts">
+                 </div>
+               </div>
+               </div>
+            </div>
+ 
+    
+    
+    
+            <div class="container" id="sections">
+            <ul class="nav md-pills nav-justified pills-info" id="container_sections">
+			<li class="nav-item">
+				<a href="#world" data-toggle="tab" class="active nav-link section_a">World</a>
+			</li>
+			<li class="nav-item">
+				<a href="#politics" data-toggle="tab" class="nav-link section_a">Politics</a>
+			</li>
+            <li class="nav-item">
+				<a href="#science" data-toggle="tab"  class="nav-link section_a">Science</a>
+			</li>
+            <li class="nav-item">
+				<a href="#sports" data-toggle="tab"  class="nav-link section_a">Sports</a>
+			</li>
+            <li class="nav-item">
+				<a href="#technology" data-toggle="tab" class="nav-link section_a">Technology</a>
+			</li>
+            <li class="nav-item">
+				<a href="#entertainment" data-toggle="tab" class="nav-link section_a">Entertainment</a>
+			</li>
+        </ul>
+<!--
+                    <div class="col-lg-4 float-right">
+<select class="browser-default custom-select" id="order_by">
+  <option value="order-by=newest">order by newest first</option>
+  <option value="order-by=oldest">order by oldest first</option>
+
+</select>
+    </div>
+-->
+            </div>
+
+            <div class="tab-content mb-6">
+			<div id="world" class="tab-pane fade show active">
+                <div class="jumbotron-fluid">
+                 <div class="container">
+                 <h1 class="display-4">World</h1>
+                     <div class="row" id="world_posts">
+                 </div>
+               </div>
+               </div>
+            </div>
+            
+			<div id="politics" class="tab-pane fade">
+            <div class="jumbotron-fluid">
+             <div class="container">
+                 <h1 class="display-4">Politics</h1>
+                 <div class="row" id="politics_posts">
+                 </div>
+               </div>
+               </div>
+            </div>
+            
+            <div id="science" class="tab-pane fade">
+            <div class="jumbotron-fluid">
+             <div class="container">
+                 <h1 class="display-4">Science</h1>
+                 <div class="row" id="science_posts">
+                 </div>
+               </div>
+               </div>
+            </div>
+            
+            <div id="sports" class="tab-pane fade">
+            <div class="jumbotron-fluid">
+             <div class="container">
+                 <h1 class="display-4">Sports</h1>
+                 <div class="row" id="sports_posts">
+                 </div>
+               </div>
+               </div>
+            </div>
+            
+            <div id="technology" class="tab-pane fade">
+            <div class="jumbotron-fluid">
+             <div class="container">
+                 <h1 class="display-4">Technology</h1>
+                 <div class="row" id="technology_posts">
+                 </div>
+               </div>
+               </div>
+            </div>
+            
+            <div id="entertainment" class="tab-pane fade">
+            <div class="jumbotron-fluid">
+             <div class="container">
+                 <h1 class="display-4">Entertainment</h1>
+                 <div class="row" id="entertainment_posts">
+                 </div>
+               </div>
+               </div>
+            </div>
+    </div>
+
+
+    
+    <div id="displayBox" class="marquee"></div>
+
+    
+<!--    //MODAL FOR STORY-->
+    
+
+<!-- Modal -->
+<div class="modal fade" id="story_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="story_title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="story_div" class="story_content">
+            <img src="" id="story_img" alt="thumbnail" class="modal-content">
+            <p id="story_content"></p>
+            <button type="button" class="btn btn-secondary float-right mr-3" data-dismiss="modal">Close</button>
+            <button type="button" id="read_More" class="btn btn-primary float-right mr-3">Read more</button>
+            <a type="button" id="story_link" href="" class="btn btn-primary float-right mr-3">Web Link</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+    
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	 crossorigin="anonymous">
+	</script>
+    <script src="scripts/js.min/service_worker.js"></script>
+    <script type="text/javascript" src="scripts/js.min/script.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	 crossorigin="anonymous">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	 crossorigin="anonymous">
+	</script>
+    
+</html>
